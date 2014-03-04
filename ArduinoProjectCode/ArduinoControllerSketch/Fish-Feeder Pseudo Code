@@ -1,26 +1,37 @@
-Pseudo Code
+**Variables**
 
-Variables
+int Servo 
+int iMotor
+int iTurntimes
+int iSensorfood
+int iSensordispensed
+int iEmail 
+int iFish
 
-int Servo int iMotor int iTurntimes int iSensorfood int iSensordispensed int iEmail int iFish
 
-Function
+***
 
-Fish calculator = iTurntimes X iFish
+**Function**
 
-Code
+Fish calculator = iTurntimes X iFish 
 
-start
+
+***
+**Code**
+
+start 
 
 wait for set time
 
- if (Light sensor is blocked)
+     if (Light sensor is blocked)
 
-      turn motor depending on amount of fish in pond using function Fish Calculator
+          turn motor depending on amount of fish in pond using function Fish Calculator
 
- else (Light sensors are not blocked)
+     else (Light sensors are not blocked)
 
-      turn servo to dispense food and send email to use extra food has been used
+          turn servo to dispense food and send email to use extra food has been used
+
+
 Loop to beginning
 
 Finish
