@@ -1,0 +1,20 @@
+Team Meeting Minutes 4
+Minutes Meeting 4 Date: 04/03/2014
+
+Leader/Secretary: April
+Documentation/Concept Designer: Samantha
+Head Programmer: Dan/Liam
+Present: Dan, Samantha Liam and April                                              Absent: N/A
+
+Meeting:
+•	Programming
+The plan is to start programming majority of the fish feeder in parts. Such as someone will do the programming for the motor and another will do the programming for the inferred sensor.
+•	Fish Feeder
+Near completion and work will be able to start on the fish feeder. The plan is to create the code by using separate components in an Arduino kit because using on the final product.
+ 
+Goals:
+•	Complete some code 
+Start creating the body, motor code, inferred code and Servo code. 
+
+•	Input final sensor onto Fish feeder
+Installed finally inferred sensors onto feeder funnel
