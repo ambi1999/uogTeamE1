@@ -1,5 +1,7 @@
-Start (Arduino)
-Define Variables (int a time; int b motor; int c fish)
+//Start (Arduino)
+//Define Variables (int a time; int b motor; int c fish)
+
+//Added comments
 
 int IncomingRead = 0;
 int Sensor = 0;
