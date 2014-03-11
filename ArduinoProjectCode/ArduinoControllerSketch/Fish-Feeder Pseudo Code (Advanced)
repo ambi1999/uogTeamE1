@@ -1,0 +1,139 @@
+Pseudo code
+
+Start (Arduino)
+
+Define Variables (int a time; int b motor; int c fish)
+
+Retrieve variables from java
+
+Check food levels on sensorA
+
+If (Foodreset = True) { //0.1o
+
+If (sensorA == True)
+
+{ //1o Retrieve system time from java
+
+Check system time == time b
+
+Do while (time b = a time)
+
+{ //2o
+
+For(x=0; y=c; x++)
+
+{ //3o
+
+Turn sensor off
+
+Turn sensor on
+
+For(a=0; motor=4;a++) //motor turns
+
+{ //4o
+
+Turn motor off
+
+Turn motor on
+
+delay(1 rotation)
+
+Turn motor off
+
+} //4c
+
+Check sensor picked up movement
+
+If (movement)
+
+{ //5o
+
+Delay (1) // Do Nothing
+
+} //5c
+
+Else
+
+{ //6o
+
+Checkfood();
+
+} //6c
+
+Turn sensor off
+
+} //3c
+
+} //2c
+
+} //1c
+
+Else
+
+{ //7o
+
+EmergencyFood();
+
+Turn Red LED on
+
+Print to system(no food)
+
+Delay 11.59 hoursmail owner //Java
+
+} //7c
+
+}// 0.1c
+
+Else
+
+{ // 8o
+
+Delay 1 hour
+
+} // 8c
+
+AttachInterrupt(); {
+
+EmergencyFood();
+
+Print to serial port (no food)
+
+}
+
+Checkfood();
+
+Turn sensor on
+
+Check if light is sensed
+
+If (false)
+
+{ //6.1o
+
+delay(1); //do nothing
+
+} //6.1c
+
+Else
+
+{ //6.2o
+
+attachInterupt(email owner)
+
+} //6.2c
+
+EmergencyFood(); {
+
+Drop hatch;
+
+}
+
+ResetEmergencyFood(); {
+
+Button press
+
+Turn motor on
+
+Delay
+
+Turn motor off }
