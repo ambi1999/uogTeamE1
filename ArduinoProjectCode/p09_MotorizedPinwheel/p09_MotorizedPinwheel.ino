@@ -42,7 +42,8 @@ Serial.println(switchState);
   // check if the switch is pressed.
   if (switchState == HIGH) {     
     // turn motor on:    
-    digitalWrite(motorPin, HIGH);  
+    analogWrite(motorPin, 150);  
+    //digitalWrite(motorPin, HIGH);  
     Serial.println("turning on");
   } 
   else {
