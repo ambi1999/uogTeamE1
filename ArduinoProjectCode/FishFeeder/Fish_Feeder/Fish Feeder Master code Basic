@@ -1,0 +1,77 @@
+//integer list
+int EmergencyFood//Red LED comes on when the emergency food has been dispenced
+int SystemEmergency//Yellow LED comes on when the system fails to dispence food through funnel
+
+//Readings from the fish feeder to the arduino
+int SwitchStateMotor = 0;//Reads the button connected to the motors value which will be replaced with the infered sensor
+int SwitchStateServo = 0;//Reads the button connected to the servos value which will be replaced with the infered sensor
+
+//Temporary buttons that will be replaced with an infered sensor
+const int MotorButton = 0;//Temporary button that will be replaced with infered sensor
+const int ServoButton = 0;//Temporary button that will be replaced with infered sensor
+
+//Need to be assigned to their pins
+const int iFoodFill = 0; // Infereds in main chamber
+const int iFoodDispencer = 0;// Inferred Sensing food being dispenced
+const int iFoodMotor = 0;//Motor that dispenses food by moving drill bit
+const int iServoEmergency =0;//Servo moves to dispence emergency food
+
+
+void setup()
+{
+ //input coming from the fish feeder to the arduino
+  pinMode(MotorButton, INPUT);//Infered sensing food bein dispenced
+  pinMode(ServoButton, INPUT);//Infered sensing food inside main chamber
+  
+  
+  //results coming from the fish feeder
+  pinMode(iServoEmergency, OUTPUT);//Movement of the servo
+  pinMode(iFoodMotor, OUTPUT);//Movement of the motor
+  
+
+void loop()
+{  
+  
+  delay(100)//When timer runs out start code
+  
+  
+if (iFoodFill == LOW)// Checks the main chamber of the fish feeder is full and if it is countinue to the motor movement
+  {
+ 
+        SwitchStateMotor = digitalRead(MotorButton);//Read the button that has been pressed which will be replaced with the infered sensor
+   
+        if (SwitchStateMotor == HIGH)//when the button/sensor is high move motor
+        {        
+        
+            digitalWrite(iFoodMotor, HIGH);//Start turning motor 
+            delay(25000); //Turns the drill piece for five turns
+        } 
+        
+        else
+        {
+       
+            digitalWrite(iFoodMotor, LOW); //Motor stays off 
+        
+        }
+        
+ 
+                if (iFoodDispencer == HIGH)//Checks if food has passed the infered sensor in funnel and if so loop
+                {
+                 //Do nothing as there is not a problem with the system
+                }
+                else (iFoodDispencer == LOW)
+                {
+                  SystemEmergency = HIGH;//Yellow LED turns on to tell the user that the system is not running as it should
+                }
+          
+
+
+else (iFoodFill == HIGH)//When sensors can see one another then the main chamber is empty 
+  {
+    //Insert Servo code here
+    EmergencyFood = HIGH;//Red LED turns on to notify the user that the food has been used
+  }
+      
+ 
+
+}
