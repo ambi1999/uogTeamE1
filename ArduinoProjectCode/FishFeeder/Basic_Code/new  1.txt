@@ -1,0 +1,89 @@
+//Main Fish Feeder Code Basic
+//April Gwynne Main code Improved By Daniel Rothwell-Jackson
+
+//Buttons/Infered Sensors
+//const int ButFeed = 3; //sets button motor to pin 3
+//const int MainInfer = 2; //sets main chamber infered to pin 2
+//const int SecInfer = 10; //sets funnel infereds to pin 10 
+
+//Output pins
+//const int FeedMotor =  13; //sets motor to pin 13
+
+//Servo
+#include <Servo.h>
+Servo EmergencyFeed; //sets servo 
+
+//States
+int SwitchStateMotor = 0; //sets motor button state to 0 value 
+int SwitchStateServo = 0; //sets servo infered state to 0 value
+int SwitchStateFeed = 0; //sets feed infered state to 0 value 
+
+void setup() 
+{
+  //Inputs
+  pinMode(2, INPUT); //main chamber infered input    //Pin 2 was MainInfer 
+  pinMode(3, INPUT); //feed button input //Pin 3 was ButFeed
+  pinMode(10, INPUT); //funnel infered input //Pin 10 was SecInfer
+  
+  //Outputs
+  pinMode(7, OUTPUT); //tank 2 red led output
+  pinMode(8, OUTPUT); //feed green led output
+  pinMode(13, OUTPUT); //motor movement output //Pin 13 was FeedMotor
+  EmergencyFeed.attach(4); //servo movement output
+}
+
+void loop(){
+
+  SwitchStateMotor = digitalRead(3); //read value coming from ButFed // Pin 3 was ButFeed
+  SwitchStateServo = digitalRead(2); //read value coming from MainInfer //Pin 2 was MainInfer 
+  SwitchStateFeed = digitalRead(10); //read value coming from SecInfer //Pin 10 was SecInfer
+
+  if (SwitchStateMotor == HIGH) //if ButFeed has been pressed
+  { 
+  digitalWrite(13, HIGH); //motor set to on //Pin 13 was FeedMotor
+  delay(5000); //alllow motor to run for set time to feed food from main chamber
+  if (SwitchStateServo == LOW) //if MainInfer cannot see food
+  {     
+  digitalWrite(7, HIGH); //turn on EmptyTank led to notify user emergency tank has been used
+  EmergencyFeed.write(0); //set position of servo to 0 degrees
+  EmergencyFeed.write(180); //set position of servo to 180 degress
+  delay(2000); //delay to allw food to fall
+  } 
+  else //if MainInfer can see food
+  {
+  digitalWrite(7, LOW); //keep EmptyTank led off as emergency chamber has not been used
+  EmergencyFeed.write(0); //Keep or when filled again turn servo back to 0 degrees
+  }
+  if (SwitchStateFeed == LOW) //if food has not passed through keep FishFeed LED off and blink EmptyTank to tell the user no food had left the fish feeder
+  { // Pin 7 Was EmptyTank
+  digitalWrite(8, LOW); //Pin 8 Was FishFeed
+  for(int i=0;i<3;i++)
+  {
+  pinHigh(7);
+  pinLow(7);
+  }  
+  }
+  else //if food passes though sensor then FishFeed LED Flashes to the user
+  { //Pin 8 Was FishFeed
+  for(int x=0;x<3;x++)
+  {
+  pinHigh(8);
+  pinLow(8);
+  }  
+  } 
+  } 
+  else {
+  digitalWrite(13, LOW); //do not turn motor on //Pin 13 was FeedMotor
+  }             
+}
+
+void pinHigh(int pinNum)
+{
+  digitalWrite(pinNum, HIGH);
+  delay(500);
+}
+void pinLow(int pinNum)
+{
+  digitalWrite(pinNum, Low);
+  delay(500);
+}
